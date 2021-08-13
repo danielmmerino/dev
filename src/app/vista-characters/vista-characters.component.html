@@ -1,0 +1,46 @@
+<div class="head-form">
+    <form [formGroup]="idForm" (ngSubmit)="searchCharacter()" >
+
+        
+        <mat-form-field class="example-full-width">
+            <mat-label>Ingrese el id del personaje:</mat-label>
+            <input matInput required placeholder="Ingrese id" formControlName="id">
+            
+            <mat-error *ngIf="idForm.get('id').hasError('required')">
+                El id es <strong>necesario</strong>
+            </mat-error>
+
+            <mat-error *ngIf="idForm.get('id').hasError('pattern')">
+                El id <strong>debe ser un número entre 1 y 100</strong>
+            </mat-error>
+            <mat-error *ngIf="idForm.get('id').hasError('minLength')">
+                El id <strong>debe ser un número entre 1 y 100</strong>
+            </mat-error>
+            <mat-error *ngIf="idForm.get('id').hasError('maxLength')">
+                El id <strong>debe ser un número entre 1 y 100</strong>
+            </mat-error>
+            
+            
+        </mat-form-field>
+        <button type="submit" class="btn btn-primary btn-char-search">Mostrar información de personaje</button>
+    </form>
+    
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 form-characer" *ngFor="let char of character.results">
+            <div class="name-character">
+                <img src="{{char.image}}" class="img-char">
+                <h1 class="char-name">{{char.name}}</h1>
+                <br>
+                <span class="char-specie">{{char.species}}</span>
+                <br>
+                <span class="char-gender">{{char.gender}}</span>
+                <br>
+                <span class="char-status">{{char.status}}</span>
+                
+            </div>
+        </div>
+    </div>
+</div>
